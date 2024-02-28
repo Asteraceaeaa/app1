@@ -1,5 +1,12 @@
-#ignore vscode confg
+#ide stuff
 .vscode
+.idea
 
-#ignore venv
+#python stuff
 venv/
+.pylintrc
+__pycache__/
+
+#django stuff
+db.sqlite3
+media/
