@@ -6,7 +6,9 @@
 venv/
 .pylintrc
 __pycache__/
+app/__pycache__/settings.cpython-311.pyc
 
 #django stuff
 db.sqlite3
 media/
+
