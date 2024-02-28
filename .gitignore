@@ -1,0 +1,5 @@
+#ignore vscode confg
+.vscode
+
+#ignore venv
+venv/
