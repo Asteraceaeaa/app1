@@ -2,7 +2,8 @@ from django.shortcuts import render
 
 # Create your views here.
 
-def announcementsPage(request):
+
+def main(request):
   context = {
     'title': 'Объявления',
     # 'content': 'Страница с объявлениями',
