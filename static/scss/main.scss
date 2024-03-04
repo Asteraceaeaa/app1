@@ -1,0 +1,23 @@
+@import 'footer.scss', 'header.scss', 'colors.scss';
+
+
+body, html {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  background: $body-gray;
+}
+
+ul, li {
+  list-style: none;
+}
+
+.container {
+  width: 1440px;
+  margin: 0 auto;
+}
+
+#main {
+  width: inherit;
+  background-color: $main-color;
+}

@@ -1,0 +1,32 @@
+@import 'colors.scss';
+
+#header {
+  width: inherit;
+  height: 80px;
+  background-color: $main-color;
+
+  .header__content {
+    display: flex;
+    width: 1360px;
+    height: 80px;
+    margin: auto;
+    align-items: center;
+    .header__logo, .header__logo-img {
+      width: 50px;
+      height: 57px;
+    }
+
+    #header__nav {
+      width: 50%;
+      height: auto;
+
+      .header__nav-list {
+        display: flex;
+        width: 100%;
+
+
+      }
+
+    }
+  }
+}

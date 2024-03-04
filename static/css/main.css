@@ -1,0 +1,50 @@
+#footer {
+  width: inherit;
+  background-color: #fff;
+}
+
+#header {
+  width: inherit;
+  height: 80px;
+  background-color: #fff;
+}
+#header .header__content {
+  display: flex;
+  width: 1360px;
+  height: 80px;
+  margin: auto;
+  align-items: center;
+}
+#header .header__content .header__logo, #header .header__content .header__logo-img {
+  width: 50px;
+  height: 57px;
+}
+#header .header__content #header__nav {
+  width: 50%;
+  height: auto;
+}
+#header .header__content #header__nav .header__nav-list {
+  display: flex;
+  width: 100%;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  background: #CFCFCF;
+}
+
+ul, li {
+  list-style: none;
+}
+
+.container {
+  width: 1440px;
+  margin: 0 auto;
+}
+
+#main {
+  width: inherit;
+  background-color: #fff;
+}

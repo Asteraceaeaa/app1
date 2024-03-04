@@ -7,32 +7,39 @@
     <meta charset="UTF-8">
     <title>{% block title %}My Site{% endblock %}</title>
     {% block css %} 
-      <link rel="stylesheet" href="{% static 'css/header.css' %}">
-      <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+      <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
     {% endblock %}
 
     <!-- Ваши стили и другие метаданные -->
 </head>
 <body>
+  <div class="container">
     <!-- Здесь ваш header -->
     <header id="header" class="header">
         <div class="header__content">
-          <div class="header__logo"></div>
+          <div class="header__logo">
+            <img src="{% static 'icons/logo.png' %}" alt="logo" class="header__logo-img">
+          </div>
           <nav class="header__nav" id="header__nav">
-            <a href="#">Профиль</a>
+            <ul class="header__nav-list">
+              <li class="header__nav-item">Что-нибудь</li>
+              <li class="header__nav-item">Профиль</li>
+            </ul>
           </nav>
         </div>
         <!-- Другие элементы header -->
     </header>
     
     <!-- Здесь содержимое, которое будет определено в дочерних шаблонах -->
-    <div class="content">
+    <main class="main" id="main">
         {% block content %}{% endblock %}
-    </div>
+    </main>
 
     
     <footer id="footer" class="footer">
 
     </footer>
+  </div>
 </body>
 </html>
