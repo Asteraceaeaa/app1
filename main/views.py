@@ -10,4 +10,4 @@ def main(request):
   }
 
 
-  return render(request, 'announcements/index.html', context)
+  return render(request, 'main/index.html')

@@ -1,0 +1,38 @@
+{% load static %}
+
+<!-- base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Site{% endblock %}</title>
+    {% block css %} 
+      <link rel="stylesheet" href="{% static 'css/header.css' %}">
+      <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    {% endblock %}
+
+    <!-- Ваши стили и другие метаданные -->
+</head>
+<body>
+    <!-- Здесь ваш header -->
+    <header id="header" class="header">
+        <div class="header__content">
+          <div class="header__logo"></div>
+          <nav class="header__nav" id="header__nav">
+            <a href="#">Профиль</a>
+          </nav>
+        </div>
+        <!-- Другие элементы header -->
+    </header>
+    
+    <!-- Здесь содержимое, которое будет определено в дочерних шаблонах -->
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    
+    <footer id="footer" class="footer">
+
+    </footer>
+</body>
+</html>
