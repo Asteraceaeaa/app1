@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'djongo',
 
 
-    # 'users',
+    'users.apps.UsersConfig',
     'announcements',
     'main',
 ]

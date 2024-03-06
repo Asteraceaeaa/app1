@@ -1,4 +1,4 @@
-@import 'colors.scss';
+@import './vars/colors.scss';
 
 #header {
   width: inherit;
@@ -17,12 +17,14 @@
     }
 
     #header__nav {
-      width: 50%;
+      width: 15%;
       height: auto;
+      margin-left: auto;
 
       .header__nav-list {
         display: flex;
         width: 100%;
+        justify-content: space-between;
 
 
       }

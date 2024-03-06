@@ -20,12 +20,20 @@
   height: 57px;
 }
 #header .header__content #header__nav {
-  width: 50%;
+  width: 15%;
   height: auto;
+  margin-left: auto;
 }
 #header .header__content #header__nav .header__nav-list {
   display: flex;
   width: 100%;
+  justify-content: space-between;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 body, html {
@@ -40,8 +48,11 @@ ul, li {
 }
 
 .container {
+  display: grid;
+  grid-template-rows: 80px calc(100vh - 80px - 20%);
   width: 1440px;
   margin: 0 auto;
+  gap: 20px;
 }
 
 #main {
