@@ -2,5 +2,8 @@
 {% load static %}
 
 {% block title %}Профиль{% endblock %}
-{% block content %}Профиль{% endblock %}
+{% block content %}
+  Logged in as {{user.username}}
+  <a href="{% url 'logout' %}">Выйти из аккаунта</a>
+{% endblock %}
 {% block footer %}{% endblock %}

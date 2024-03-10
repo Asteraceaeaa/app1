@@ -17,18 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 # from announcements import views as announcements_view
-from main import views as main_view
-from users import views as users_view
-
-user_patterns = [
-    path("login", users_view.login, name='login'),
-    path("signup", users_view.signup, name='signup'),
-    path("profile", users_view.profile, name='profile'),
-]
+from main import urls as main_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', announcements_view.announcementsPage),
-    path('', main_view.main),
-    path('user/', include(user_patterns)),
+    path('', include(main_urls)),
 ] 

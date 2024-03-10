@@ -3,6 +3,14 @@
 
 {% block title %}Вход{% endblock %}
 {% block content %}
-Войти
+<div class="content__form-container">
+  <h1 class="content__form-title">Вход</h1>
+  <form method="post" class="content__form-title">
+      {% csrf_token %}
+      {{ form.as_table }}
+      <button type="submit" class="content__form-confirm-btn">Войти</button>
+  </form>
+  <h2>Еще не зарегестрированы? <a href="{% url 'sign_up' %}">Регистрация</a></h2>
+</div>
 {% endblock %}
 {% block footer %}{% endblock %}
