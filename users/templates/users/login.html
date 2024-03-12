@@ -10,6 +10,9 @@
       {{ form.as_table }}
       <button type="submit" class="content__form-confirm-btn">Войти</button>
   </form>
+  {% if message %}
+    <p>{{ message }}</p>
+  {% endif %}
   <h2>Еще не зарегестрированы? <a href="{% url 'sign_up' %}">Регистрация</a></h2>
 </div>
 {% endblock %}

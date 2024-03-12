@@ -3,16 +3,48 @@
 
 {% block title %}Вход{% endblock %}
 {% block css %}
-  
+  <style>
+    .required {
+      color: red;
+    }
+  </style>
 {% endblock %}
 {% block content %}
 <div class="content__form-container">
   <h1 class="content__form-title">Регистрация</h1>
-  <form method="post" class="content__form-title">
-      {% csrf_token %}
-      {{ form.as_table }}
-      <button type="submit" class="content__form-confirm-btn">Зарегистрироваться</button>
+  <form method="post" class="content__form">
+    {% csrf_token %}
+    <ul class="content__form-fields-list">
+      <li class="content__form-field">{{ form.name }} <span class="required">*</span></li>
+      <li class="content__form-field">{{ form.middle_name }}</li>
+      <li class="content__form-field">{{ form.last_name }} <span class="required">*</span></li>
+      <li class="content__form-field">{{ form.email }} <span class="required">*</span></li>
+      <li class="content__form-field">{{ form.password }} <span class="required">*</span></li>
+      <li class="content__form-field">{{ form.password1 }} <span class="required">*</span></li>
+    </ul>
+    {% if form.errors %}
+    <div class="errors">
+        <ul>
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li style="color: red;">{{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <li style="color: red;">{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    <button type="submit" class="content__form-confirm-btn">Зарегистрироваться</button>
   </form>
+  <div class="content__reg-link-container">
+    
+  </div>
+  
 </div>
+
 {% endblock %}
 {% block footer %}{% endblock %}
+{% block js %}
+{% endblock %}

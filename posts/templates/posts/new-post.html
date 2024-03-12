@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Создать задачу{% endblock %}
+{% block content %}
+<div class="content__form-container">
+  <h1 class="content__form-title">Новая задача</h1>
+  <form method="post" class="content__form-title">
+      {% csrf_token %}
+      {{ form.as_table }}
+      <button type="submit" class="content__form-confirm-btn">Готово</button>
+  </form>
+
+</div>
+{% endblock %}
+{% block footer %}{% endblock %}

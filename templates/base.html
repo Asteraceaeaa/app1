@@ -15,12 +15,22 @@
     <!-- Здесь ваш header -->
     <header id="header" class="header">
         <div class="header__content">
-          <div class="header__logo">
+          <a class="header__logo" href="{% url 'home' %}">
             <img src="{% static 'global/icons/logo.png' %}" alt="logo" class="header__logo-img">
-          </div>
+          </a>
           <nav class="header__nav" id="header__nav">
             <ul class="header__nav-list">
-              <li class="header__nav-item">Задачник</li>
+              {% if user.is_authenticated %}
+              <span class="navbar-text">Logged in as {{user.username}} | </span>
+              <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+              </li>
+              {% endif %}
+              <!-- <li class="header__nav-item">Задачник</li>
               <li class="header__nav-item">
                 {% if user.is_authenticated %}
                 <a href="{% url 'profile' %}">Профиль</a>
@@ -28,7 +38,7 @@
                 {% else %}
                 <a href="{% url 'login' %}">Вход</a>
                 
-                {% endif %}
+                {% endif %} -->
               
               </li>
             </ul>
@@ -47,5 +57,8 @@
       {% block footer %}{% endblock %}
     </footer>
   </div>
+  <script>
+    {% block js %}{% endblock %}
+  </script>
 </body>
 </html>
