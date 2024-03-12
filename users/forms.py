@@ -1,5 +1,7 @@
 from django import forms
 from .models import CustomUser
+from django.contrib.auth.forms import AuthenticationForm
+
 
 class UserSignUpForm(forms.Form):
   
@@ -53,11 +55,13 @@ class UserSignUpForm(forms.Form):
         if commit:
             user.save()
         return user
-class UserLogInForm(forms.Form):
+class UserLogInForm(AuthenticationForm):
 
-  email = forms.CharField(label='Почта', max_length=100)
-  password = forms.CharField(label='Пароль', widget=forms.PasswordInput())
+  def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+  # email = forms.CharField(label='Почта', max_length=100)
+  # password = forms.CharField(label='Пароль', widget=forms.PasswordInput())
 
-  class Meta:
-        model = CustomUser
-        fields = ['email', 'password']
+  # class Meta:
+  #       model = CustomUser
+  #       fields = ['email', 'password']

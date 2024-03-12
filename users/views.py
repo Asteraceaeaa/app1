@@ -3,45 +3,50 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout 
 from .forms import UserSignUpForm, UserLogInForm
+from django.contrib.auth.views import LoginView
+from django.views.generic.edit import FormView
 
-def login_user(request):
-    form = UserLogInForm()
-    message = ''
-    if request.method == 'POST':
-        form = UserLogInForm(request.POST)
-        print(form.is_valid())
-        if form.is_valid():
-            user = authenticate(
-                email=form.cleaned_data['email'],
-                password=form.cleaned_data['password'],
-            )
-            print(user)
-            if user is not None:
-                login(request, user)
-                message = f'Hello {user.username}! You have been logged in'
-            else:
-                message = 'Login failed!'
-    return render(
-        request, 'users/login.html', context={'form': form, 'message': message})
+class login_user(LoginView):
+    """
+    Представление для регистрации нового пользователя.
+    """
+    template_name = 'users/signup.html'  # Путь к вашему шаблону для формы регистрации
+    form_class = UserLogInForm
+    success_url = '/profile'  # URL, на который перенаправить после успешной регистрации
+
+    def form_valid(self, form):
+        # Создаем пользователя с использованием данных из формы
+        form.save()
+        # Аутентифицируем пользователя после регистрации
+        email = form.cleaned_data.get('email')
+        password = form.cleaned_data.get('password')
+        user = authenticate(email=email, password=password)
+        # Вход пользователя
+        login(self.request, user)
+        return super().form_valid(form)
 
 
-def sign_up(request):
-    if request.method == 'POST':
-        form = UserSignUpForm(request.POST)
-        if form.is_valid():
-            try:
-                user = form.save()
-                print(user)
-                login(request, user)
-                return redirect('/profile')
-                # Перенаправление на страницу успешной регистрации или другую страницу
-            except IntegrityError:
-                # Обработка ошибки, когда email уже существует в базе данных
-                # Можно добавить сообщение об ошибке в форму или передать его в контекст шаблона
-                form.add_error('email', 'Данный email уже зарегистрирован')
-    else:
-        form = UserSignUpForm()
-    return render(request, 'users/signup.html', {"form": form})
+class RegistrationView(FormView):
+    """
+    Представление для регистрации нового пользователя.
+    """
+    template_name = 'users/signup.html'  # Путь к вашему шаблону для формы регистрации
+    form_class = UserSignUpForm
+    success_url = '/profile'  # URL, на который перенаправить после успешной регистрации
+
+    def form_valid(self, form):
+        # Создаем пользователя с использованием данных из формы
+        form.save()
+        # Аутентифицируем пользователя после регистрации
+        name = form.cleaned_data.get('name')
+        last_name = form.cleaned_data.get('last_name')
+        middle_name = form.cleaned_data.get('middle_name') 
+        email = form.cleaned_data.get('email')
+        password = form.cleaned_data.get('password1')
+        user = authenticate(email=email, password=password)
+        # Вход пользователя
+        login(self.request, user)
+        return super().form_valid(form)
 
 def profile(request):
   return render(request, 'users/profile.html')
