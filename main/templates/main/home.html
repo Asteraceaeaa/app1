@@ -17,7 +17,7 @@
         <div class="content__post-for_whom"><h3 class="content__post-for_whom-title">Для кого:</h3> {{post.for_whom}} </div>
         <div class="content__post-body">
           <p class="content__post-body-author">{{post.author.name}} говорит:</p>
-          <p class="content__post-body-text">{{post.body}}</p>
+          <p class="content__post-body-text">{{ post.body|truncatewords:20|linebreaks }}</p>
         </div>
         <p class="content__post-date">{{post.created_at}}</p>
         {% if post.author == request.user %}
