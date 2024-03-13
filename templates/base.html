@@ -15,20 +15,29 @@
     <!-- Здесь ваш header -->
     <header id="header" class="header">
         <div class="header__content">
-          <a class="header__logo" href="{% url 'home' %}">
-            <img src="{% static 'global/icons/logo.png' %}" alt="logo" class="header__logo-img">
-          </a>
+          
           <nav class="header__nav" id="header__nav">
             <ul class="header__nav-list">
               {% if user.is_authenticated %}
-              <span class="navbar-text">Logged in as {{user.username}} | </span>
-              <li class="nav-item">
-                <a class="nav-link" href="/logout">Logout</a>
-              </li>
+                {% if request.user.has_perm('posts.add_post') %}
+                <li class="nav-item">
+                  <a class="header__nav-home-link" href="{% url 'create_post' %}">
+                    Создать публикацию
+                  </a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                  <a class="header__nav-home-link" href="{% url 'home' %}">
+                    Объявления
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="header__nav-profile-link" href="{% url 'profile' %}"><img src="{{user.avatar.url}}" alt="User Avatar">{{request.user.last_name}} {{request.user.name}} {% if request.user.middle_name %} {{request.user.middle_name}} {% endif %}</a>
+                </li>
               {% else %}
-              <li class="nav-item">
-                <a class="nav-link" href="/login">Login</a>
-              </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/login">Login</a>
+                </li>
               {% endif %}
               <!-- <li class="header__nav-item">Задачник</li>
               <li class="header__nav-item">

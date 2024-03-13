@@ -3,7 +3,8 @@
 
 {% block title %}Профиль{% endblock %}
 {% block content %}
-  Logged in as {{user.username}}
+<img src="{{user.avatar.url}}" alt="User Avatar">
+{{request.user.last_name}} {{request.user.name}} {% if request.user.middle_name %} {{request.user.middle_name}} {% endif %}
   <a href="{% url 'logout' %}">Выйти из аккаунта</a>
 {% endblock %}
 {% block footer %}{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{post.title}}{% endblock %}
+{% block content %}
+
+  <div class="content__post">
+    <h2 class="content__post-title">
+      {{post.title}}
+    </h2>
+    <div class="content__post-for_whom"><h3 class="content__post-for_whom-title">Для кого:</h3> {{post.for_whom}} </div>
+    <p class="content__post-body">
+      <p class="content__post-body-author">{{post.author.name}} Говорит:</p>
+      <p class="content__post-body-text">{{post.body}}</p>
+    </p>
+  </div>
+{% endblock %}
+{% block footer %}{% endblock %}

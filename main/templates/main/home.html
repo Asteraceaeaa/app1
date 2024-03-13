@@ -5,26 +5,28 @@
 
 {% block content %}
     <!-- Содержимое страницы About Us -->
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, perferendis eius! Dolore ipsam provident perspiciatis perferendis vitae nam laudantium repellendus. Neque error ad earum quaerat beatae voluptatibus rem quo velit.
-    Minima, officiis! Minima possimus quo, neque excepturi, vel fuga quaerat, est esse quibusdam autem inventore id non facere fugiat. Possimus iure commodi magnam, fugiat cumque natus voluptates unde neque? Facilis.
-    Praesentium aliquam nihil doloribus. Numquam laborum debitis vitae aperiam reiciendis repellat? Minus odit reiciendis cumque maxime esse molestias temporibus, illo beatae id eaque eius expedita, repellat nesciunt doloremque, hic suscipit.
-    Sed non amet commodi culpa! Temporibus illum voluptatem itaque esse. Sed esse nostrum ullam unde soluta animi aperiam beatae, officiis eius neque ea? Obcaecati sit quibusdam fugiat praesentium incidunt ipsa.
-    Necessitatibus officia explicabo rerum aspernatur accusantium error illum sunt corrupti mollitia aliquid reiciendis molestias repellat, provident inventore sit voluptatem alias repudiandae assumenda adipisci optio libero a animi accusamus. Non, corrupti.
-    Nisi sit a optio porro nihil sequi ipsum perferendis quidem assumenda repellendus, eum temporibus beatae delectus, ullam corporis omnis amet quas cumque. Cupiditate ab repellat consequatur tempora autem, optio quas.
-    Repellendus sunt iure exercitationem illo fugiat accusamus soluta hic suscipit tempora ea adipisci reprehenderit, molestias deserunt dicta. Labore recusandae doloribus totam dignissimos quidem unde odit, eaque quas, iste mollitia laborum!
-    Ab suscipit voluptates possimus ullam quaerat fuga, eos laudantium veniam nisi tempora dicta. Officiis dolorum iste mollitia iure quod a repudiandae consequatur earum accusamus, maiores ab debitis! Quos, culpa harum?
-    Aut cumque ex, perferendis at, numquam delectus ad eum placeat optio accusantium repellendus nesciunt inventore sunt ea velit incidunt mollitia facere quasi quod laudantium quibusdam! Tempora sed suscipit beatae atque?
-    Perspiciatis vitae in, enim voluptates labore numquam nam dicta consectetur ducimus aut eligendi tenetur similique nostrum dolorem, provident beatae totam vel, quae dolor iure velit sint? Architecto quas veritatis saepe.
-    Eos consectetur, eius nobis consequatur voluptatem omnis suscipit earum! Corporis dolores earum minus rem vitae excepturi repellendus possimus deserunt voluptatum commodi, placeat nesciunt, blanditiis dolore cumque quidem quia esse dignissimos!
-    In ad ipsa repudiandae nemo aliquid explicabo delectus hic minima at dolore odio repellendus itaque quo magni, voluptates asperiores dolor iure sed? Perferendis adipisci consectetur est dolore ratione aut repellat!
-    Dolor, totam quis. Vero non fuga facilis at eos alias possimus illo deleniti sunt molestias assumenda atque optio repellat dolore, dicta laboriosam animi provident neque, voluptatem modi eligendi, excepturi quos.
-    Cumque cum voluptatum, assumenda blanditiis quaerat facilis sunt unde veritatis ipsum dicta iusto ex beatae ea numquam expedita quidem vel itaque dolore libero eligendi ratione quis nobis? Dolor, odit voluptate?
-    Vel error voluptate est cum quaerat recusandae excepturi eveniet inventore, hic debitis voluptatem quod impedit consectetur maiores blanditiis beatae possimus magni pariatur earum voluptatibus. Quo cumque nostrum nam dicta perferendis.
-    Ducimus nisi saepe adipisci pariatur, laudantium obcaecati perferendis ratione laborum nostrum maiores labore, ea sed? Animi, ullam officia. Repellat quidem architecto repellendus dolore sint expedita laboriosam laborum aut ipsum voluptas.
-    Est voluptas accusantium maxime itaque consequuntur at! Vitae dolor harum repudiandae facere numquam, magni doloremque commodi alias, architecto quaerat, possimus nisi corporis velit distinctio non assumenda nam iure molestias totam!
-    At molestias debitis impedit in laudantium molestiae ratione pariatur corporis facere, vitae vel error quam, aliquam perferendis! Ea, laboriosam. Sit blanditiis aspernatur ad voluptates? Praesentium illum ratione nihil quas similique?
-    Odio quaerat totam tempore error in, consequatur id quod quo, laboriosam labore quidem veritatis tempora, harum rem! Sapiente culpa amet corrupti. Debitis nisi architecto aspernatur corporis tempore praesentium! Dolor, ducimus!
-    Illo, reiciendis. Excepturi praesentium modi voluptatibus iure quis autem alias numquam eligendi consequatur sit est dolores hic facere error deserunt, explicabo tenetur totam, accusamus fugit quas quod assumenda reiciendis nobis?</p>
+  <h1>Текущие Объявления</h1>
+  <ul class="content__list">
+    {% for post in posts %}
+  <li class="content__post">
+    <a href="{{ post.get_absolute_url }}" class="content__post-link">
+      <h2 class="content__post-title">
+        {{post.title}}
+      </h2>
+    </a>
+      <div class="content__post-for_whom"><h3 class="content__post-for_whom-title">Для кого:</h3> {{post.for_whom}} </div>
+      <div class="content__post-body">
+        <p class="content__post-body-author">{{post.author.name}} Говорит:</p>
+        <p class="content__post-body-text">{{post.body}}</p>
+      </div>
+      <p class="content__post-date">{{post.created_at}}</p>
+    
+  </li>
+
+  {% endfor %}
+  </ul>
+  {{post}}
+
 {% endblock %}
 {% block footer %}{% endblock %}
 {% load static %}
