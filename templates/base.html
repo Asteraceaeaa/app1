@@ -35,8 +35,7 @@
                   <a class="header__nav-profile-link" href="{% url 'profile' %}">
                     <!-- <img src="{{user.avatar.url}}" alt="User Avatar"> -->
 
-                    <p class="header__nav-profile-link-last_name">{{request.user.last_name}} </p>
-                    <p class="header__nav-profile-link-name">{{request.user.name}} </p>
+                    {{request.user.name}}
                     
                   </a>
                 </li>

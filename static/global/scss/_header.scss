@@ -11,24 +11,27 @@
     height: 80px;
     margin: auto;
     align-items: center;
-    .header__logo, .header__logo-img {
-      width: 50px;
-      height: 57px;
-    }
-
-    #header__nav {
-      width: 15%;
-      height: auto;
-      margin-left: auto;
+    .header__nav {
+      width: 100%;
 
       .header__nav-list {
         display: flex;
-        width: 100%;
-        justify-content: space-between;
+        justify-content: space-around;
+        
+        .nav-item a {
+          text-transform: uppercase;
 
+        }
+        .nav-item a:hover {
+          font-weight: 600;
 
+        }
+        .nav-item, .nav-item .header__nav-profile-link{
+          display: flex;
+          
+        }
+        
       }
-
     }
   }
 }
