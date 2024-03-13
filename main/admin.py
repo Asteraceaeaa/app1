@@ -3,14 +3,15 @@ from django.conf import settings
 from django.contrib.auth.models import Group
 from django.db.models.signals import post_save
 
+
 class MainConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'main'
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "main"
 
     def ready(self):
         def add_to_default_group(sender, **kwargs):
             user = kwargs["instance"]
-            if kwargs['created']:
+            if kwargs["created"]:
                 group, _ = Group.objects.get_or_create(name="Пользователи")
                 group.user_set.add(user)
 
