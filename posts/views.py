@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView
-from .forms import PostForm, CommentForm
+from .forms import PostForm
 from .models import Post
 
 
@@ -41,18 +41,3 @@ def delete_post(request, pk):
     return redirect("home")
 
 
-# Comments
-@login_required(login_url="login")
-def create_comment(request):
-    if request.method == "POST":
-        form = CommentForm(
-            request.POST, user=request.user
-        )  # Передаем текущего пользователя в форму
-        if form.is_valid():
-            form.save()
-            return redirect(
-                "home"
-            )  # Перенаправляем на главную страницу после успешного создания комментария
-    else:
-        form = CommentForm(user=request.user)  # Передаем текущего пользователя в форму
-    return render(request, "create_comment.html", {"form": form})
