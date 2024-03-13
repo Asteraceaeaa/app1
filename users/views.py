@@ -12,7 +12,7 @@ class login_user(LoginView):
     """
     authentication_form = UserLogInForm
     template_name = 'users/login.html'  # Путь к вашему шаблону для формы входа
-    success_url = '/profile'  # URL, на который перенаправить после успешного входа
+    success_url = 'profile'  # URL, на который перенаправить после успешного входа
 
 
 class RegistrationView(FormView):

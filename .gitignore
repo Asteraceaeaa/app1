@@ -13,3 +13,4 @@ db.sqlite3
 media/
 
 app/__pycache__/settings.cpython-311.pyc
+app/__pycache__/urls.cpython-311.pyc

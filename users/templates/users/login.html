@@ -2,18 +2,38 @@
 {% load static %}
 
 {% block title %}Вход{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'users/css/main.css' %}">
+{% endblock %}
 {% block content %}
 <div class="content__form-container">
-  <h1 class="content__form-title">Вход</h1>
-  <form method="post" class="content__form-title">
+  
+  <form method="post" class="content__form">
       {% csrf_token %}
-      {{ form.as_table }}
-      <button type="submit" class="content__form-confirm-btn">Войти</button>
+      <table class="content__form-table">
+        <th class="content__form-table-th">
+          <h1 class="content__form-title">Вход</h1>
+        </th>
+        <tr class="content__form-table-row">
+          <!-- <td class="content__form-td">{{form.username.label}}</td> -->
+          <td class="content__form-td">{{ form.username }}</td>
+        </tr>
+        <tr class="content__form-table-row">
+          <!-- <td class="content__form-td">{{form.password.label}}</td> -->
+          <td class="content__form-td">{{ form.password }}</td>
+        </tr>
+        <!-- <tr class="content__form-table-row">
+          
+        </tr> -->
+      </table>
+      <button type="submit" class="content__form-confirm-btn" style="margin: auto;">Войти</button>
+      
+      
   </form>
   {% if message %}
     <p>{{ message }}</p>
   {% endif %}
-  <h2>Еще не зарегестрированы? <a href="{% url 'sign_up' %}">Регистрация</a></h2>
+  <p class="content__link">Еще не зарегестрированы? <a href="{% url 'sign_up' %}" style="color: #0000ee;">Регистрация</a></p>
 </div>
 {% endblock %}
 {% block footer %}{% endblock %}

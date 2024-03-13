@@ -31,9 +31,9 @@ class UserLogInForm(AuthenticationForm):
 
   def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-  # email = forms.CharField(label='Почта', max_length=100)
-  # password = forms.CharField(label='Пароль', widget=forms.PasswordInput())
-
-  # class Meta:
-  #       model = CustomUser
-  #       fields = ['email', 'password']
+        self.fields['username'].label = 'Email'
+        self.fields['password'].label = 'Пароль'
+        self.fields['username'].widget.attrs.update({'class': 'form-input', 'placeholder': 'Email' })
+        self.fields['password'].widget.attrs.update({'class': 'form-input', 'placeholder': 'Пароль'})
+        self.fields['password'].error_messages = {'required': 'Поле обязательно к заполнению'}
+        self.fields['username'].error_messages = {'required': 'Поле обязательно к заполнению'}
