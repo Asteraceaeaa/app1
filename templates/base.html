@@ -19,36 +19,33 @@
           <nav class="header__nav" id="header__nav">
             <ul class="header__nav-list">
               {% if user.is_authenticated %}
-                {% if request.user.has_perm('posts.add_post') %}
+     
                 <li class="nav-item">
                   <a class="header__nav-home-link" href="{% url 'create_post' %}">
                     Создать публикацию
                   </a>
                 </li>
-                {% endif %}
+
                 <li class="nav-item">
                   <a class="header__nav-home-link" href="{% url 'home' %}">
                     Объявления
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="header__nav-profile-link" href="{% url 'profile' %}"><img src="{{user.avatar.url}}" alt="User Avatar">{{request.user.last_name}} {{request.user.name}} {% if request.user.middle_name %} {{request.user.middle_name}} {% endif %}</a>
+                  <a class="header__nav-profile-link" href="{% url 'profile' %}">
+                    <!-- <img src="{{user.avatar.url}}" alt="User Avatar"> -->
+
+                    <p class="header__nav-profile-link-last_name">{{request.user.last_name}} </p>
+                    <p class="header__nav-profile-link-name">{{request.user.name}} </p>
+                    
+                  </a>
                 </li>
               {% else %}
                 <li class="nav-item">
                   <a class="nav-link" href="/login">Login</a>
                 </li>
               {% endif %}
-              <!-- <li class="header__nav-item">Задачник</li>
-              <li class="header__nav-item">
-                {% if user.is_authenticated %}
-                <a href="{% url 'profile' %}">Профиль</a>
-                
-                {% else %}
-                <a href="{% url 'login' %}">Вход</a>
-                
-                {% endif %} -->
-              
+
               </li>
             </ul>
           </nav>

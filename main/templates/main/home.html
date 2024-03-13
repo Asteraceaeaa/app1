@@ -8,24 +8,30 @@
   <h1>Текущие Объявления</h1>
   <ul class="content__list">
     {% for post in posts %}
-  <li class="content__post">
-    <a href="{{ post.get_absolute_url }}" class="content__post-link">
-      <h2 class="content__post-title">
-        {{post.title}}
-      </h2>
-    </a>
-      <div class="content__post-for_whom"><h3 class="content__post-for_whom-title">Для кого:</h3> {{post.for_whom}} </div>
-      <div class="content__post-body">
-        <p class="content__post-body-author">{{post.author.name}} Говорит:</p>
-        <p class="content__post-body-text">{{post.body}}</p>
-      </div>
-      <p class="content__post-date">{{post.created_at}}</p>
-    
-  </li>
+      <li class="content__post">
+      <a href="{{ post.get_absolute_url }}" class="content__post-link">
+        <h2 class="content__post-title">
+          {{post.title}}
+        </h2>
+      </a>
+        <div class="content__post-for_whom"><h3 class="content__post-for_whom-title">Для кого:</h3> {{post.for_whom}} </div>
+        <div class="content__post-body">
+          <p class="content__post-body-author">{{post.author.name}} говорит:</p>
+          <p class="content__post-body-text">{{post.body}}</p>
+        </div>
+        <p class="content__post-date">{{post.created_at}}</p>
+        {% if post.author == request.user %}
+        <form action="{% url 'delete_post' post.pk %}" method="post">
+          {% csrf_token %}
+          <button type="submit">Delete</button>
+        </form>
+        {% endif %}
+        
+      </li>
+      <!-- <input type="hidden" id="post_id" value="{{ post.id }}"> -->
+    {% endfor %}
+    </ul>
 
-  {% endfor %}
-  </ul>
-  {{post}}
 
 {% endblock %}
 {% block footer %}{% endblock %}

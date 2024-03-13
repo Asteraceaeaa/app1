@@ -22,3 +22,9 @@ class PostDetailView(DetailView):
     model = Post
     template_name = 'posts/post-detail.html'  # Замените на имя вашего шаблона
     context_object_name = 'post' 
+    
+def delete_post(request, pk):
+    post = Post.objects.get(pk=pk)
+    if request.method == 'POST':
+        post.delete()
+    return redirect('home')

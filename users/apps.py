@@ -5,4 +5,5 @@ class UsersConfig(AppConfig):
     name = 'users'
 
     def ready(self):
-        import users.signals
+        from django.contrib.auth.models import Permission
+        add_post_perm = Permission.objects.get_or_create(codename='add_post', name='Can add post')
