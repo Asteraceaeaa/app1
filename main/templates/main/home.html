@@ -1,37 +1,41 @@
-
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Объявления{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+{% endblock %}
 
 {% block content %}
-    <!-- Содержимое страницы About Us -->
-  <h1>Текущие Объявления</h1>
-  <ul class="content__list">
-    {% for post in posts %}
-      <li class="content__post">
-      <a href="{{ post.get_absolute_url }}" class="content__post-link">
-        <h2 class="content__post-title">
-          {{post.title}}
-        </h2>
-      </a>
-        <div class="content__post-for_whom"><h3 class="content__post-for_whom-title">Для кого:</h3> {{post.for_whom}} </div>
-        <div class="content__post-body">
-          <p class="content__post-body-author">{{post.author.name}} говорит:</p>
-          <p class="content__post-body-text">{{ post.body|truncatewords:20|linebreaks }}</p>
-        </div>
-        <p class="content__post-date">{{post.created_at}}</p>
-        {% if post.author == request.user %}
-        <form action="{% url 'delete_post' post.pk %}" method="post">
-          {% csrf_token %}
-          <button type="submit">Delete</button>
-        </form>
-        {% endif %}
-        
-      </li>
-      <!-- <input type="hidden" id="post_id" value="{{ post.id }}"> -->
-    {% endfor %}
+  <div class="content__container">
+    <h1 class="page-title">Текущие объявления</h1>
+    <ul class="content__posts-list">
+      {% for post in posts %}
+        <li class="content__post">
+          <p class="content__post-author">{{post.author.last_name}} {{post.author.name}} {% if post.author.middle_name %} {{post.author.middle_name}} {%endif%}</p>
+          <a href="{{ post.get_absolute_url }}" class="content__post-link">
+            <h2 class="content__post-title">
+              {{post.title}}
+            </h2>
+          </a>
+          <div class="content__post-for_whom"><h3 class="content__post-for_whom-title">Для кого:</h3> {{post.for_whom}} </div>
+          <div class="content__post-body">
+            <p class="content__post-body-author">{{post.author.name}} говорит:</p>
+            <p class="content__post-body-text">{{ post.body|truncatewords:20|linebreaks }}</p>
+          </div>
+          <p class="content__post-date">{{post.created_at}}</p>
+          {% if post.author == request.user %}
+          <form action="{% url 'delete_post' post.pk %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Delete</button>
+          </form>
+          {% endif %}
+          
+        </li>
+        <!-- <input type="hidden" id="post_id" value="{{ post.id }}"> -->
+      {% endfor %}
     </ul>
-
+  </div>
 
 {% endblock %}
 {% block footer %}{% endblock %}

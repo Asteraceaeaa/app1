@@ -3,9 +3,9 @@ from django.contrib.auth.models import AbstractBaseUser
 from .managers import CustomUserManager
 
 class CustomUser(AbstractBaseUser):
-    avatar = models.ImageField(upload_to='users/avatars/', null=True, blank=True, default='users/avatars/default-user-avatar.png')
+   
     name = models.CharField(max_length=100)
-    middle_name = models.CharField(max_length=100)
+    middle_name = models.CharField(max_length=100, null=True, blank=True, default=None)
     last_name = models.CharField(max_length=100)
     email = models.EmailField(verbose_name='Email', max_length=255, unique=True)
     password  =models.CharField(max_length=255)
@@ -29,8 +29,4 @@ class CustomUser(AbstractBaseUser):
     def is_staff(self):
         return self.is_admin
 
-class AdditionalUserInfo(models.Model):
-
-  user = models.ForeignKey(CustomUser, on_delete = models.CASCADE)
-  # image = models.ImageField(upload_to='users/', default='users/default-user-avatar.png')
 

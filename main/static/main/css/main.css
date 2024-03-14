@@ -1,0 +1,17 @@
+.content__posts-list {
+  display: grid;
+  width: 80%;
+  height: 80%;
+  margin: auto;
+}
+.content__posts-list .content__post .content__post-author {
+  font-weight: 600;
+}
+
+.content__container {
+  display: flex;
+  flex-direction: column;
+  width: 98%;
+  height: 90%;
+  margin: auto;
+}
